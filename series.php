@@ -16,26 +16,11 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-      <style>
-      .highlight {
-          background-color: #FFFF00;
-          font-weight: bold;
-          text-transform: uppercase
-       }
 
-       th, td {
-          padding-left: 10px;
-          padding-right: 10px;
-          padding-top: 10px;
-          padding-bottom: 10px;
-        }
+    <!-- personal styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
 
-        .wrapper{
-            width: 600px;
-            margin: 0 auto;
-        }
-        </style>
-      </head>
   <body>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -63,6 +48,8 @@ echo "Failed to connect to MySQL: " . mysqli_connect_error();
 <div class="container">
 
 <?php
+
+// Test
 //$country= 'UK';
 //$series= '16';
 
@@ -93,15 +80,10 @@ $series= $_GET['series'];
   $champion = $row1['champion'];
 
 
-
-
-  //echo "<p>Contestants: " . $chair_1 . ", " . $chair_2 . ", " . $chair_3 . ", " . $chair_4 . ", and " . $chair_5 . "</p>";
   echo "<p style='text-align:center;margin-top:10px;font-size:14px;background-color: #9ACEEB;'>Contestants: " . $chair_1 . ", " . $chair_2 . ", " . $chair_3 . ", " . $chair_4 . ", and " . $chair_5 . "</p>";
   echo "<p style='text-align:center;margin-top:10px;font-size:16px;background-color: gold;'>Champion: <b>$champion</b></p>";
 
   }
-
-              //$result2 = mysqli_query($con,"SELECT * FROM episodes WHERE series LIKE '%$series%' AND country LIKE '%$country%'");
 
               $result2 = mysqli_query($con,"SELECT * FROM episodes WHERE series = '$series' AND country LIKE '%$country%'");
               $num_rows = mysqli_num_rows($result2);
@@ -148,60 +130,6 @@ $series= $_GET['series'];
 
 
 echo "</table>";
-
-//echo "<p style='text-align:center;margin-top:10px;color: white;font-weight: bold;font-size:16px;background-color: black;'><a target='_blank' href='https://gooddogdreams.etsy.com/listing/1598268863/taskmaster-time-black-glossy-mug'>Taskmaster Your Time Starts Now Coffee Cup</a></p>";
-
-
-//https://gooddogdreams.etsy.com/listing/1598269741/taskmaster-info-black-glossy-mug
-//https://gooddogdreams.etsy.com/listing/1598268863/taskmaster-time-black-glossy-mug
-
-//HOLD THIS
-//echo "<p style='text-align:center;margin-top:10px;font-size:16px'>Air dates: " . $airdate_range ."</p>";
-
-
-// NEXT AND PREVIOUS QUERIES
-// $next = mysqli_query($con, "SELECT * FROM series WHERE id>$id order by id ASC");
-//
-// if($row = mysqli_fetch_array($next))
-// $next_series = $row['series'];
-// $next_country = $row['country'];
-// $next_id = $row['id'];
-//
-// {
-//   echo "<a href='series.php?id=$next_id&series=$next_series&country=$next_country'><button type='button'>Next</button></a>";
-//
-// }
-//
-// // Previous button
-// $previous= mysqli_query($con, "SELECT * FROM series WHERE id<$id order by id DESC");
-//
-// if($row = mysqli_fetch_array($previous))
-// $previous_series = $row['series'];
-// $previous_country = $row['country'];
-// $previous_id = $row['id'];
-//
-//
-// {
-//   echo "<a href='series.php?id=$previous_id&series=$previous_series&country=$previous_country'><button type='button'>Previous</button></a>";
-//
-// }
-
-
-//HOLD THIS
-
-// }
-//
-//     else {
-//
-//       $query = "UK";
-//     // no search content so go back to index and die
-//     // INDEX will be a standard series and episode list
-//     //header( "Location: index.php" );
-//     die;
-//     }
-
-
-
 mysqli_close($con);
 ?>
 

@@ -16,25 +16,9 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-      <style>
-      .highlight {
-          background-color: #FFFF00;
-          font-weight: bold;
-          text-transform: uppercase
-       }
 
-       th, td {
-          padding-left: 10px;
-          padding-right: 10px;
-          padding-top: 10px;
-          padding-bottom: 10px;
-        }
-
-        .wrapper{
-            width: 600px;
-            margin: 0 auto;
-        }
-        </style>
+    <!-- personal styles -->
+    <link rel="stylesheet" href="styles.css">
       </head>
   <body>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -65,17 +49,15 @@ echo "Failed to connect to MySQL: " . mysqli_connect_error();
     <h1 style='margin-top:20px;'><a href="index.php">Taskmaster Leaderboards</a></h1>
 
 <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
-    <!-- <label for="inputQuery">Query:</label>
-    <input type="text" name="query" id="inputQuery"> -->
+
     <input type=hidden name="IP" value="REMOTE_ADDR">
 
-    <!-- <label for="country">Country:</label> -->
     <select name="country" id="country">
             <option value="UK">UK</option>
             <option value="NZ">NZ</option>
             <option value="AU">AU</option>
     </select>
-    <!-- <label for="version">Version:</label> -->
+
     <select name="version" id="version">
       <option value="All">All</option>
     	<option value="Champion of Champions">Champion of Champions</option>
@@ -102,26 +84,11 @@ if (!empty($_POST["country"]))
                               {$searchversion = $version;}
               $select = "SELECT * FROM series WHERE country LIKE '%$country%' AND version LIKE '%$searchversion%' ORDER BY id ASC";
               $headline = "<p style='text-align:center;margin-top:10px;font-weight: bold;font-size:16px;background-color: #9ACEEB;'>$country - $version Results</p>";
-              //$headline = "<p style='margin-top:10px;'></p>";
               }
               else {
-              //$country = "UK";
-              //$version = "Regular Series";
               $select = "SELECT * FROM series WHERE featured >0 ORDER BY id ASC";
               $headline = "<p style='text-align:center;margin-top:10px;font-weight: bold;font-size:16px;background-color: #9ACEEB;'>Featured Series</p>";
                 }
-
-// if version is all give me all
-//if ($version == "All")
-//{$version = "%";}
-
-//capture the query before anything
-// $ipaddress = $_SERVER['REMOTE_ADDR'];
-// $sql = "INSERT INTO captures (IP, query) VALUES (?,?)";
-// $stmt= $con->prepare($sql);
-// $stmt->bind_param("ss", $ipaddress, $country);
-// $stmt->execute();
-
 
               //$result = mysqli_query($con,"SELECT * FROM series WHERE country LIKE '%$country%' AND version LIKE '%$version%' ORDER BY id ASC");
               $result = mysqli_query($con,$select);
@@ -131,11 +98,9 @@ if (!empty($_POST["country"]))
 
                       // If results are zero go back to index and die
                       if(!$num_rows){
-                        //header( "Location: windex.php" );
-                        //echo "<p style='text-align:center;margin-top:10px;font-size:16px'><b>Nothing found</b></p>";
+
                         echo "<p style='text-align:center;margin-top:10px;font-weight: bold;font-size:16px;background-color: silver;'>Nothing Found</p>";
                         echo "<p style='text-align:center;'><img src='joe-horses-and-darkness.png' width=96% alt='Nothing found. Image of Joe Wilkerson. Text Horses and Darkness.'></p>";
-                        //echo "<img src="joe-horses-and-darkness.png">;
                         die;
                       }
 
@@ -181,11 +146,7 @@ if (!empty($_POST["country"]))
 
 echo "<td><center><p style='font-size:24px'><a href='series.php?series=$series&country=$country'>$country<br />Series $series</a></p>
 <p style='font-size:12px'>$airdate_range</p></center></td>";
-// HOLD THIS "<td><p style='text-align:center;font-size:24px'><a href='series.php?series=$series&country=$country'>$country<br />Series $series</a></p></td>";
 
-                            //  echo "</tr>";
-
-//
 
 $champ1 = "style='background: blue'";
 $champ2 = "style='background: blue'";
@@ -233,32 +194,9 @@ else
 
                                 }
 
-
-
-
                         }
 
-
 echo "</table>";
-
-//
-// thank you to taskmaster.tv, wikipedia.org, and taskmaster.info
-
-//echo "<p style='text-align:center;margin-top:10px;font-weight: bold;font-size:16px;background-color: black;'><a target='_blank' href='https://gooddogdreams.etsy.com/listing/1598269741/taskmaster-info-black-glossy-mug'>Taskmaster All The Information is On The Task Coffee Mug</a></p>";
-
-
-// }
-//
-//     else {
-//
-//       $query = "UK";
-//     // no search content so go back to index and die
-//     // INDEX will be a standard series and episode list
-//     //header( "Location: index.php" );
-//     die;
-//     }
-
-
 
 mysqli_close($con);
 ?>

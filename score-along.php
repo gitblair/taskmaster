@@ -16,26 +16,10 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-      <style>
-      .highlight {
-          background-color: #FFFF00;
-          font-weight: bold;
-          text-transform: uppercase
-       }
 
-       th, td {
-          padding-left: 10px;
-          padding-right: 10px;
-          padding-top: 10px;
-          padding-bottom: 10px;
-        }
-
-        .wrapper{
-            width: 600px;
-            margin: 0 auto;
-        }
-        </style>
-      </head>
+    <!-- personal styles -->
+    <link rel="stylesheet" href="styles.css">
+  </head>
   <body>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -479,10 +463,6 @@ echo "Failed to connect to MySQL: " . mysqli_connect_error();
         </div>
             </div>
                 </div>
-
-
-                <!-- <h2>How would your scoring effect the series?</h2> -->
-
 
 <!-- my container closer -->
     </div>
