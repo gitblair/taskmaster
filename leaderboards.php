@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<?php
-//
-// Author: c. blair 2022 revised 2023, 2024.
-//
-?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -28,18 +23,7 @@
 
 
 <?php
-require "db.php";
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-$con=mysqli_connect($host, $username, $password, $dbname);
-// Check connection
-
-if (mysqli_connect_errno())
-{
-echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
+require "config.php";
 ?>
 
 <!-- container  -->
@@ -91,7 +75,7 @@ if (!empty($_POST["country"]))
                 }
 
               //$result = mysqli_query($con,"SELECT * FROM series WHERE country LIKE '%$country%' AND version LIKE '%$version%' ORDER BY id ASC");
-              $result = mysqli_query($con,$select);
+              $result = mysqli_query($conn,$select);
 
 
               $num_rows = mysqli_num_rows($result);
@@ -198,7 +182,7 @@ else
 
 echo "</table>";
 
-mysqli_close($con);
+mysqli_close($conn);
 ?>
 
 

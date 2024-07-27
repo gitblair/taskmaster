@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<?php
-//
-// Author: c. blair 2022 revised 2023, 2024.
-//
-?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -28,18 +23,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 
 <?php
-require "db.php";
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+require "config.php";
 
-$con=mysqli_connect($host, $username, $password, $dbname);
-// Check connection
-
-if (mysqli_connect_errno())
-{
-echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
 ?>
 
 <!-- container  -->
@@ -48,17 +33,18 @@ echo "Failed to connect to MySQL: " . mysqli_connect_error();
 
 <?php
 
-  //$country= 'UK';
-  //$series= '16';
+  $country= 'UK';
+  $series= '16';
+    $episode= '1';
 
-  $country= $_GET['country'];
-  $series= $_GET['series'];
-  $episode= $_GET['episode'];
+  // $country= $_GET['country'];
+  // $series= $_GET['series'];
+  //$episode= $_GET['episode'];
 
 
 //QUERY THE episodes for ep_title
 
-  $result2 = mysqli_query($con,"SELECT * FROM episodes WHERE country = '$country' AND series LIKE '$series' AND episode LIKE '$episode'");
+  $result2 = mysqli_query($conn,"SELECT * FROM episodes WHERE country = '$country' AND series LIKE '$series' AND episode LIKE '$episode'");
   $num_rows = mysqli_num_rows($result2);
 
           // If results are zero go back to index and die
@@ -86,7 +72,7 @@ echo "Failed to connect to MySQL: " . mysqli_connect_error();
 
 // NOW query the series for contestants
 
-  $result1 = mysqli_query($con,"SELECT * FROM series WHERE series = '$series' AND country LIKE '%$country%' LIMIT 1");
+  $result1 = mysqli_query($conn,"SELECT * FROM series WHERE series = '$series' AND country LIKE '%$country%' LIMIT 1");
 
   while($row1 = mysqli_fetch_assoc($result1))
 

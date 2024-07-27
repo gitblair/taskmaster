@@ -4,80 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Series Table</title>
-
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
-
-
-
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/css/theme.bootstrap_4.min.css">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.widgets.min.js"></script>
-
-
-
-
-
-
-    <style>
-        .table-responsive {
-            height: 700px; /* Adjust as needed */
-            overflow-y: auto;
-        }
-        .table thead th {
-            position: sticky;
-            top: 0;
-            background-color: #fff;
-            z-index: 2;
-        }
-    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <?php require "config.php"; ?>
 
 <body>
-    <div class="container-fluid mt-5">
-        <h2>Series Table</h2>
-        <button id="add-row-btn" class="btn btn-success mb-3">Add New Row</button>
-        <div class="table-responsive">
-              <table id="series-table" class="table table-bordered tablesorter">
-
-              <!-- <button id="add-row-btn" class="btn btn-success mb-3">Add New Row</button>
-              <table class="table table-bordered"> -->
-                  <thead>
-                      <tr>
-                          <th>ID</th>
-                          <th>Featured</th>
-                          <th>Country</th>
-                          <th>Taskmaster</th>
-                          <th>Assistant</th>
-                          <th>Series</th>
-                          <th>Airdate Range</th>
-                          <th>Version</th>
-                          <th>Num</th>
-                          <th>Chair 1</th>
-                          <th>Chair 2</th>
-                          <th>Chair 3</th>
-                          <th>Chair 4</th>
-                          <th>Chair 5</th>
-                          <th>Score Chair 1</th>
-                          <th>Score Chair 2</th>
-                          <th>Score Chair 3</th>
-                          <th>Score Chair 4</th>
-                          <th>Score Chair 5</th>
-                          <th>Champion</th>
-                          <th>Series Note</th>
-                          <th>Champ Score</th>
-                          <th>Actions</th>
-                      </tr>
-                  </thead>
-
-
+<div class="container-fluid mt-5">
+    <h2>Series Table</h2>
+    <button id="add-row-btn" class="btn btn-success mb-3">Add New Row</button>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Featured</th>
+                <th>Country</th>
+                <th>Taskmaster</th>
+                <th>Assistant</th>
+                <th>Series</th>
+                <th>Airdate Range</th>
+                <th>Version</th>
+                <th>Num</th>
+                <th>Chair 1</th>
+                <th>Chair 2</th>
+                <th>Chair 3</th>
+                <th>Chair 4</th>
+                <th>Chair 5</th>
+                <th>Score Chair 1</th>
+                <th>Score Chair 2</th>
+                <th>Score Chair 3</th>
+                <th>Score Chair 4</th>
+                <th>Score Chair 5</th>
+                <th>Champion</th>
+                <th>Series Note</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
         <tbody>
             <?php
             if ($conn->connect_error) {
@@ -88,16 +51,7 @@
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    // Calculate the maximum score for the current row
-                    $maxScore = max(
-                        $row['score_chair_1'],
-                        $row['score_chair_2'],
-                        $row['score_chair_3'],
-                        $row['score_chair_4'],
-                        $row['score_chair_5']
-                    );
-
+                while($row = $result->fetch_assoc()) {
                     echo "<tr data-id='{$row['id']}'>";
                     echo "<td contenteditable='false' data-field='id'>{$row['id']}</td>";
                     foreach ($row as $key => $value) {
@@ -105,65 +59,24 @@
                             echo "<td contenteditable='true' data-field='{$key}'>{$value}</td>";
                         }
                     }
-                    // Add a new column for the max score
-                    echo "<td>{$maxScore}</td>";
                     echo "<td><button class='btn btn-primary save-btn'>Save</button></td>";
                     echo "</tr>";
                 }
             } else {
                 echo "<tr><td colspan='22'>No records found</td></tr>";
             }
+
+            $conn->close();
             ?>
         </tbody>
     </table>
-
 </div>
-</div>
-
-
-
-
-
-
-
 
 <script>
     $(document).ready(function() {
 
 
-      // TABLESORTER SCRIPT
-      $("#series-table").tablesorter({
-                      theme: 'bootstrap',
-                      widgets: ['zebra', 'columns'],
-                      headers: {
-                          0: { sorter: 'digit' },
-                          1: { sorter: 'text' },
-                          2: { sorter: 'text' },
-                          3: { sorter: 'text' },
-                          4: { sorter: 'text' },
-                          5: { sorter: 'text' },
-                          6: { sorter: 'text' },
-                          7: { sorter: 'text' },
-                          8: { sorter: 'digit' },
-                          9: { sorter: 'text' },
-                          10: { sorter: 'text' },
-                          11: { sorter: 'text' },
-                          12: { sorter: 'text' },
-                          13: { sorter: 'text' },
-                          14: { sorter: 'digit' }, // score_chair_1
-                          15: { sorter: 'digit' }, // score_chair_2
-                          16: { sorter: 'digit' }, // score_chair_3
-                          17: { sorter: 'digit' }, // score_chair_4
-                          18: { sorter: 'digit' }, // score_chair_5
-                          19: { sorter: false }, // Disable sorting for Champion
-                          20: { sorter: false }, // Disable sorting for Series Note
-                          21: { sorter: 'digit' }, // champ score
-                          22: { sorter: false } // Disable sorting for the Actions column
-                      }
-                  });
-
-
-        // ADD NEW ROW SCRIPT
+  // ADD NEW ROW FUNCTION
         $('#add-row-btn').on('click', function() {
             var newRow = `
                 <tr>
@@ -218,8 +131,10 @@
             });
         });
 
+    });
 
-          // SAVE EDITS SCRIPT
+
+// SAVE EDITS FUNCTION
         $(document).ready(function() {
             // Save button click handler for existing rows
             $('.save-btn').on('click', function() {
@@ -251,7 +166,7 @@
         });
 
 
-    });
+
 
 
 </script>
