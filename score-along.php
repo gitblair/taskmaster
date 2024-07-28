@@ -8,19 +8,21 @@
     <title>Taskmaster Leaderboards</title>
     <meta name="robots" content="index,follow">
 
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/css/theme.bootstrap_4.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 
     <!-- personal styles -->
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 
 <?php
 require "config.php";
@@ -29,7 +31,9 @@ require "config.php";
 
 <!-- container  -->
 
-<div class="container">
+    <div class="container mt-5">
+
+        <?php include "nav.php"; ?>
 
 <?php
 
@@ -99,51 +103,256 @@ require "config.php";
                       <form>
                         <!-- ROW FOR CHAIRS -->
                         <div class="form-row">
-                          <div class="col-3">
-                            Contestants
-                          </div>
-                          <div class="col">
-                            <p style='text-align:center;'><?php echo $chair_1; ?></p>
-                          </div>
-                          <div class="col">
-                            <p style='text-align:center;'><?php echo $chair_2; ?></p>
-                          </div>
-                          <div class="col">
-                            <p style='text-align:center;'><?php echo $chair_3; ?></p>
-                          </div>
-                          <div class="col">
-                            <p style='text-align:center;'><?php echo $chair_4; ?></p>
-                          </div>
-                          <div class="col">
-                            <p style='text-align:center;'><?php echo $chair_5; ?></p>
-                        </div>
-                        </div>
+<table>
+
+<tr>
+  <td>
+    <p style='text-align:center;'>Contestants</p>
+  </td>
+<td>
+  <p style='text-align:center;'><?php echo $chair_1; ?></p>
+</td>
+<td>
+  <p style='text-align:center;'><?php echo $chair_2; ?></p>
+</td>
+<td>
+  <p style='text-align:center;'><?php echo $chair_3; ?></p>
+</td>
+<td>
+  <p style='text-align:center;'><?php echo $chair_4; ?></p>
+</td>
+<td>
+  <p style='text-align:center;'><?php echo $chair_5; ?></p>
+</td>
+</tr>
+
+                      <tr>
+                        <td>
+                          <p style='text-align:center;'>Score Thus Far (Optional)</p>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair1_STF" oninput="updateSum1()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair2_STF" oninput="updateSum2()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair3_STF" oninput="updateSum3()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair4_STF" oninput="updateSum4()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair5_STF" oninput="updateSum5()">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <p style='text-align:center;'>Task 1 (Prize)</p>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair1_STF" oninput="updateSum1()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair2_STF" oninput="updateSum2()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair3_STF" oninput="updateSum3()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair4_STF" oninput="updateSum4()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair5_STF" oninput="updateSum5()">
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td>
+                          <p style='text-align:center;'>Task 2</p>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair1_STF" oninput="updateSum1()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair2_STF" oninput="updateSum2()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair3_STF" oninput="updateSum3()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair4_STF" oninput="updateSum4()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair5_STF" oninput="updateSum5()">
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td>
+                          <p style='text-align:center;'>Task 3</p>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair1_STF" oninput="updateSum1()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair2_STF" oninput="updateSum2()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair3_STF" oninput="updateSum3()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair4_STF" oninput="updateSum4()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair5_STF" oninput="updateSum5()">
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td>
+                          <p style='text-align:center;'>Task 4</p>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair1_STF" oninput="updateSum1()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair2_STF" oninput="updateSum2()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair3_STF" oninput="updateSum3()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair4_STF" oninput="updateSum4()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair5_STF" oninput="updateSum5()">
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td>
+                          <p style='text-align:center;'>Task 5 (Live)</p>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair1_STF" oninput="updateSum1()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair2_STF" oninput="updateSum2()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair3_STF" oninput="updateSum3()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair4_STF" oninput="updateSum4()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair5_STF" oninput="updateSum5()">
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td>
+                          <p style='text-align:center;'>Task 6 (Opt. Solo)</p>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair1_STF" oninput="updateSum1()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair2_STF" oninput="updateSum2()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair3_STF" oninput="updateSum3()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair4_STF" oninput="updateSum4()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair5_STF" oninput="updateSum5()">
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td>
+                          <p style='text-align:center;'>Task 7 (Opt. Tiebreak)</p>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair1_STF" oninput="updateSum1()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair2_STF" oninput="updateSum2()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair3_STF" oninput="updateSum3()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair4_STF" oninput="updateSum4()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair5_STF" oninput="updateSum5()">
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td>
+                          <p style='text-align:center;'>Task 8 (Opt. Just in Case)</p>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair1_STF" oninput="updateSum1()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair2_STF" oninput="updateSum2()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair3_STF" oninput="updateSum3()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair4_STF" oninput="updateSum4()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair5_STF" oninput="updateSum5()">
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td>
+                          <p style='text-align:center;'>Running Totals</p>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair1_STF" oninput="updateSum1()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair2_STF" oninput="updateSum2()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair3_STF" oninput="updateSum3()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair4_STF" oninput="updateSum4()">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control" id="chair5_STF" oninput="updateSum5()">
+                        </td>
+                      </tr>
 
 
 
-                        <!-- ROW FOR Score Thus Far-->
-                        <div class="form-row">
-                          <div class="col-3">
-                            Score Thus Far (Optional)
-                          </div>
-                          <div class="col">
-                            <input type="text" class="form-control" id="chair1_STF" oninput="updateSum1()">
-                          </div>
-                          <div class="col">
-                            <input type="text" class="form-control" id="chair2_STF" oninput="updateSum2()">
-                          </div>
-                          <div class="col">
-                            <input type="text" class="form-control" id="chair3_STF" oninput="updateSum3()">
-                          </div>
-                          <div class="col">
-                            <input type="text" class="form-control" id="chair4_STF" oninput="updateSum4()">
-                          </div>
-                          <div class="col">
-                            <input type="text" class="form-control" id="chair5_STF" oninput="updateSum5()">
-                        </div>
-                        </div>
 
 
+                      </table>
+
+
+
+                                              <!-- OLD STYLE ->
 
 
                         <!-- ROW FOR TASK 1 PRIZE-->

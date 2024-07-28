@@ -41,7 +41,12 @@
 <?php require "config.php"; ?>
 
 <body>
-    <div class="container-fluid mt-5">
+    <div class="container mt-5">
+
+      <?php include "nav.php"; ?>
+
+
+
         <h2>Series Table</h2>
         <button id="add-row-btn" class="btn btn-success mb-3">Add New Row</button>
         <div class="table-responsive">

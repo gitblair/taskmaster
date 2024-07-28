@@ -8,10 +8,8 @@
     <title>Taskmaster Leaderboards</title>
     <meta name="robots" content="index,follow">
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <!-- personal styles -->
     <link rel="stylesheet" href="styles.css">
       </head>
@@ -29,6 +27,8 @@ require "config.php";
 <!-- container  -->
 
 <div class="container">
+
+        <?php include "nav.php"; ?>
 
     <h1 style='margin-top:20px;'><a href="index.php">Taskmaster Leaderboards</a></h1>
 
