@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $decimal_fields = ['score_chair_1', 'score_chair_2', 'score_chair_3', 'score_chair_4', 'score_chair_5'];
+    $decimal_fields = ['chair_1_ep_score', 'chair_2_ep_score', 'chair_3_ep_score', 'chair_4_ep_score', 'chair_5_ep_score'];
     $updateFields = [];
 
     foreach ($data as $field => $value) {
@@ -31,17 +31,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $updateFieldsStr = implode(', ', $updateFields);
-    $sql = "UPDATE series SET $updateFieldsStr WHERE id = $id";
+    $sql = "UPDATE episodes SET $updateFieldsStr WHERE id = $id";
 
     // Log the SQL query for debugging
-    custom_log("Update SQL: $sql");
+    custom_log("Update Episode SQL: $sql");
 
     if ($conn->query($sql) === TRUE) {
-        echo "Record updated successfully";
-        custom_log("Record updated successfully");
+        echo "Episode updated successfully";
+        custom_log("Episode updated successfully");
     } else {
-        echo "Error updating record: " . $conn->error;
-        custom_log("Error updating record: " . $conn->error);
+        echo "Error updating Episode: " . $conn->error;
+        custom_log("Error updating Episode: " . $conn->error);
     }
 
     $conn->close();

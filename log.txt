@@ -1,0 +1,6 @@
+2024-07-30 16:13:16 - Update Episode SQL: UPDATE episode SET id = '242', country = 'UK', series = 'NYT4', episode = '1', ep_title = 'Huh?', ep_airdate = '', chair_1_ep_score = 0.0, chair_2_ep_score = 0.0, chair_3_ep_score = 0.0, chair_4_ep_score = 0.0, chair_5_ep_score = 20, ep_winner = 'Lenny Rush', ep_note = '' WHERE id = 242
+2024-07-30 16:13:16 - Error updating Episode: Table 'taskmaster.episode' doesn't exist
+2024-07-30 16:15:06 - Update Episode SQL: UPDATE episodes SET id = '242', country = 'UK', series = 'NYT4', episode = '1', ep_title = 'Huh?', ep_airdate = '', chair_1_ep_score = 0.0, chair_2_ep_score = 0.0, chair_3_ep_score = 0.0, chair_4_ep_score = 0.0, chair_5_ep_score = 40, ep_winner = 'Lenny Rush', ep_note = '' WHERE id = 242
+2024-07-30 16:15:06 - Episode updated successfully
+2024-07-30 16:26:43 - Update Episode SQL: UPDATE episodes SET id = '243', country = 'UK', series = '99', episode = '999', ep_title = 'Testing', ep_airdate = '', chair_1_ep_score = 23, chair_2_ep_score = 34, chair_3_ep_score = 56, chair_4_ep_score = 67, chair_5_ep_score = 12, ep_winner = '', ep_note = '' WHERE id = 243
+2024-07-30 16:26:43 - Episode updated successfully
