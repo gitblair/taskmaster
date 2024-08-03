@@ -3,18 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taskmaster: Update Episode Table</title>
+    <title>Taskmaster: Update Series Table</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-        <!-- Local Style -->
+        <!-- App Style -->
         <link rel="stylesheet" href="styles.css">
 
         <!-- Table Sorter -->
@@ -30,46 +23,51 @@
 
 
 <body>
-    <div class="container mt-5">
-
-      <?php include "nav-sitewide.php"; ?>
+    <!-- <div class="container mt-5"> -->
 
       <?php require "config.php"; ?>
 
-      <div class="col-md-12 p-4 mt-5 bg-info bg-gradient">
+      <div class="col-md-12 p-4 mt-5">
 
         <?php include "nav-project.php"; ?>
 
-        <h2 class="mt-3">Taskmaster: Update Episode Table</h2>
+        <h2 class="mt-3">Taskmaster: Update Series Table</h2>
         <p>
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
 
 
 
         <button id="add-row-btn" class="btn btn-success mt-3 mb-3">Add New Row</button>
         <div class="table-responsive">
-              <table id="episode-table" class="table table-bordered tablesorter">
+              <table id="series-table" class="table table-bordered tablesorter">
 
               <!-- <button id="add-row-btn" class="btn btn-success mb-3">Add New Row</button>
               <table class="table table-bordered"> -->
                   <thead>
                       <tr>
                           <th>ID</th>
+                          <th>Featured</th>
                           <th>Country</th>
+                          <th>Taskmaster</th>
+                          <th>Assistant</th>
                           <th>Series</th>
-                          <th>Episode</th>
-                          <th>Ep Title</th>
-                          <th>EP Airdate</th>
-                          <th>EP Score Chair 1</th>
-                          <th>EP Score Chair 2</th>
-                          <th>EP Score Chair 3</th>
-                          <th>EP Score Chair 4</th>
-                          <th>EP Score Chair 5</th>
-                          <th>EP Winner</th>
-                          <th>EP Note</th>
-                          <th>EP Winner Score</th>
+                          <th>Airdate Range</th>
+                          <th>Version</th>
+                          <th>Num</th>
+                          <th>Chair 1</th>
+                          <th>Chair 2</th>
+                          <th>Chair 3</th>
+                          <th>Chair 4</th>
+                          <th>Chair 5</th>
+                          <th>Score Chair 1</th>
+                          <th>Score Chair 2</th>
+                          <th>Score Chair 3</th>
+                          <th>Score Chair 4</th>
+                          <th>Score Chair 5</th>
+                          <th>Champion</th>
+                          <th>Series Note</th>
+                          <th>Champ Score</th>
                           <th>Actions</th>
                       </tr>
                   </thead>
@@ -81,18 +79,18 @@
                 die("Connection failed: " . $conn->connect_error);
             }
 
-            $sql = "SELECT * FROM episodes ORDER BY id DESC";
+            $sql = "SELECT * FROM series ORDER BY id DESC";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     // Calculate the maximum score for the current row
                     $maxScore = max(
-                        $row['chair_1_ep_score'],
-                        $row['chair_2_ep_score'],
-                        $row['chair_3_ep_score'],
-                        $row['chair_4_ep_score'],
-                        $row['chair_5_ep_score']
+                        $row['score_chair_1'],
+                        $row['score_chair_2'],
+                        $row['score_chair_3'],
+                        $row['score_chair_4'],
+                        $row['score_chair_5']
                     );
 
                     echo "<tr data-id='{$row['id']}'>";
@@ -108,7 +106,7 @@
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='14'>No records found</td></tr>";
+                echo "<tr><td colspan='22'>No records found</td></tr>";
             }
             ?>
         </tbody>
@@ -129,25 +127,33 @@
 
 
       // TABLESORTER SCRIPT
-      $("#episode-table").tablesorter({
+      $("#series-table").tablesorter({
                       theme: 'bootstrap',
                       widgets: ['zebra', 'columns'],
                       headers: {
                           0: { sorter: 'digit' },
-                          1: { sorter: 'text' }, //country
-                          2: { sorter: 'text' }, //series num
-                          3: { sorter: 'text' }, //ep num
-                          4: { sorter: 'text' }, //ep title
-                          5: { sorter: 'text' }, //airdate
-                          6: { sorter: 'digit' }, // ep score_chair_1
-                          7: { sorter: 'digit' }, // ep score_chair_2
-                          8: { sorter: 'digit' }, // ep score_chair_3
-                          9: { sorter: 'digit' }, // ep score_chair_4
-                          10: { sorter: 'digit' }, // sep core_chair_5
-                          11: { sorter: false }, // Disable sorting ep winner
-                          12: { sorter: false }, // Disable sorting for ep Note
-                          13: { sorter: 'digit' }, // ep winner score
-                          14: { sorter: false } // Disable sorting for the Actions column
+                          1: { sorter: 'text' },
+                          2: { sorter: 'text' },
+                          3: { sorter: 'text' },
+                          4: { sorter: 'text' },
+                          5: { sorter: 'text' },
+                          6: { sorter: 'text' },
+                          7: { sorter: 'text' },
+                          8: { sorter: 'digit' },
+                          9: { sorter: 'text' },
+                          10: { sorter: 'text' },
+                          11: { sorter: 'text' },
+                          12: { sorter: 'text' },
+                          13: { sorter: 'text' },
+                          14: { sorter: 'digit' }, // score_chair_1
+                          15: { sorter: 'digit' }, // score_chair_2
+                          16: { sorter: 'digit' }, // score_chair_3
+                          17: { sorter: 'digit' }, // score_chair_4
+                          18: { sorter: 'digit' }, // score_chair_5
+                          19: { sorter: false }, // Disable sorting for Champion
+                          20: { sorter: false }, // Disable sorting for Series Note
+                          21: { sorter: 'digit' }, // champ score
+                          22: { sorter: false } // Disable sorting for the Actions column
                       }
                   });
 
@@ -157,18 +163,26 @@
             var newRow = `
                 <tr>
                     <td contenteditable="false" data-field="id"></td>
+                    <td contenteditable="true" data-field="featured">0</td>
                     <td contenteditable="true" data-field="country"></td>
+                    <td contenteditable="true" data-field="taskmaster"></td>
+                    <td contenteditable="true" data-field="assistant"></td>
                     <td contenteditable="true" data-field="series"></td>
-                    <td contenteditable="true" data-field="episode"></td>
-                    <td contenteditable="true" data-field="ep_title"></td>
-                    <td contenteditable="true" data-field="ep_airdate"></td>
-                    <td contenteditable="true" data-field="chair_1_ep_score"></td>
-                    <td contenteditable="true" data-field="chair_2_ep_score"></td>
-                    <td contenteditable="true" data-field="chair_3_ep_score"></td>
-                    <td contenteditable="true" data-field="chair_4_ep_score"></td>
-                    <td contenteditable="true" data-field="chair_5_ep_score"></td>
-                    <td contenteditable="true" data-field="ep_winner"></td>
-                    <td contenteditable="true" data-field="ep_note"></td>
+                    <td contenteditable="true" data-field="airdate_range"></td>
+                    <td contenteditable="true" data-field="version"></td>
+                    <td contenteditable="true" data-field="num"></td>
+                    <td contenteditable="true" data-field="chair_1"></td>
+                    <td contenteditable="true" data-field="chair_2"></td>
+                    <td contenteditable="true" data-field="chair_3"></td>
+                    <td contenteditable="true" data-field="chair_4"></td>
+                    <td contenteditable="true" data-field="chair_5"></td>
+                    <td contenteditable="true" data-field="score_chair_1"></td>
+                    <td contenteditable="true" data-field="score_chair_2"></td>
+                    <td contenteditable="true" data-field="score_chair_3"></td>
+                    <td contenteditable="true" data-field="score_chair_4"></td>
+                    <td contenteditable="true" data-field="score_chair_5"></td>
+                    <td contenteditable="true" data-field="champion"></td>
+                    <td contenteditable="true" data-field="series_note"></td>
                     <td contenteditable="false"></td>
                     <td><button class="btn btn-success add-btn">Add</button></td>
                 </tr>
@@ -187,7 +201,7 @@
             });
 
             $.ajax({
-                url: 'add_episode.php',
+                url: 'add_series.php',
                 method: 'POST',
                 data: {data: data},
                 success: function(response) {
@@ -218,7 +232,7 @@
                 console.log('Data to be sent for update:', {id: id, data: data}); // Log the data
 
                 $.ajax({
-                    url: 'update_episode.php',
+                    url: 'update_series.php',
                     method: 'POST',
                     data: {id: id, data: data},
                     success: function(response) {
@@ -234,17 +248,15 @@
 
 
     });
+</script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-
-
-$(document).ready(function(){
-  $('.dropdown-submenu a.test').on("click", function(e){
-    $(this).next('ul').toggle();
-    e.stopPropagation();
-    e.preventDefault();
-  });
-});
 
 
 
