@@ -8,8 +8,7 @@ function custom_log($message) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id = $_POST['id'];
-    $data = $_POST['data'];
+    $data = json_decode($_POST['data'], true); // Decode the JSON data
 
     // Check connection
     if ($conn->connect_error) {
@@ -18,32 +17,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $decimal_fields = ['score_chair_1', 'score_chair_2', 'score_chair_3', 'score_chair_4', 'score_chair_5'];
-    $updateFields = [];
 
-    foreach ($data as $field => $value) {
-        // Handle decimal fields specifically
-        if (in_array($field, $decimal_fields)) {
-            $value = ($value === '') ? 'NULL' : $conn->real_escape_string($value);
-        } else {
-            $value = "'" . $conn->real_escape_string($value) . "'";
+    foreach ($data as $row) {
+        $id = $row['id'];
+        $updateFields = [];
+
+        foreach ($row as $field => $value) {
+            // Handle decimal fields specifically
+            if (in_array($field, $decimal_fields)) {
+                $value = ($value === '') ? 'NULL' : $conn->real_escape_string($value);
+            } else {
+                $value = "'" . $conn->real_escape_string($value) . "'";
+            }
+            $updateFields[] = "$field = $value";
         }
-        $updateFields[] = "$field = $value";
+
+        $updateFieldsStr = implode(', ', $updateFields);
+        $sql = "UPDATE series SET $updateFieldsStr WHERE id = $id";
+
+        // Log the SQL query for debugging
+        custom_log("Update SQL: $sql");
+
+        if ($conn->query($sql) === TRUE) {
+            custom_log("Record with ID $id updated successfully");
+        } else {
+            custom_log("Error updating record with ID $id: " . $conn->error);
+        }
     }
 
-    $updateFieldsStr = implode(', ', $updateFields);
-    $sql = "UPDATE series SET $updateFieldsStr WHERE id = $id";
-
-    // Log the SQL query for debugging
-    custom_log("Update SQL: $sql");
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Record updated successfully";
-        custom_log("Record updated successfully");
-    } else {
-        echo "Error updating record: " . $conn->error;
-        custom_log("Error updating record: " . $conn->error);
-    }
-
+    echo "Records updated successfully";
     $conn->close();
 }
 ?>
