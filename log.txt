@@ -1,3 +1,5 @@
 
 2024-08-04 20:52:30 - Update SQL: UPDATE series SET id = '76', featured = '0', country = '', taskmaster = '', assistant = '', series = '', airdate_range = '', version = '', num = '', chair_1 = '', chair_2 = '', chair_3 = '', chair_4 = '', chair_5 = '', score_chair_1 = 44, score_chair_2 = 55, score_chair_3 = 66, score_chair_4 = 77, score_chair_5 = 88, champion = '', series_note = '' WHERE id = 76
 2024-08-04 20:52:30 - Record with ID 76 updated successfully
+2024-08-05 01:45:18 - Update SQL: UPDATE series SET id = '78', featured = '0', country = '', taskmaster = '', assistant = '', series = '', airdate_range = '', version = '', num = '', chair_1 = '', chair_2 = '', chair_3 = '', chair_4 = '', chair_5 = '', score_chair_1 = NULL, score_chair_2 = NULL, score_chair_3 = 66, score_chair_4 = NULL, score_chair_5 = NULL, champion = '', series_note = '' WHERE id = 78
+2024-08-05 01:45:18 - Record with ID 78 updated successfully

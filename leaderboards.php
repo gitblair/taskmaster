@@ -45,194 +45,210 @@
 
 <hr />
 
-<div class="col-md-12 ms-5 mt-3 mb-4">
-<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
-
-    <input type=hidden name="IP" value="REMOTE_ADDR">
-
-    <select name="country" id="country">
-            <option value="UK">UK</option>
-            <option value="NZ">NZ</option>
-            <option value="AU">AU</option>
-    </select>
-
-    <select name="version" id="version">
-      <option value="Regular Series">Regular Series</option>
-    	<option value="Champion of Champions">Champion of Champions</option>
-    	<option value="New Years Treat">New Years Treat</option>
-      <option value="All">All</option>
-
-    </select>
-    <input type="submit" value="Find">
-</form>
-</div>
 
 
 
 
 
 
-
-<div class="table-responsive mt-3">
-  <table id="series-table" class="table table-bordered">
-    <thead>
-      <tr>
-
-
-
+<!-- NEW SQL -->
 <?php
 
-// if index sent any query
-if (!empty($_POST["country"]))
-              {
-              $country = $_POST["country"];
-              $version = $_POST["version"];
-                              if ($version == "All")
-                              {$searchversion = "%";}
-                              else
-                              {$searchversion = $version;}
-              $select = "SELECT * FROM series WHERE country LIKE '%$country%' AND version LIKE '%$searchversion%' ORDER BY id DESC";
-              $headline = "<th colspan='2' class='text-center fw-bold fs-5 bg-light text-dark pt-2'>$country - $version</th>";
-              }
-              else {
-              //$select = "SELECT * FROM series WHERE featured >0 ORDER BY id DESC";
-              $select = "SELECT * FROM series WHERE country LIKE 'UK' AND version LIKE 'Regular Series' ORDER BY id DESC";
-              $headline = "<th colspan='2' class='text-center fw-bold fs-5 bg-light text-dark pt-2'>UK - Regular Series</th>";
-                }
 
-              //$result = mysqli_query($con,"SELECT * FROM series WHERE country LIKE '%$country%' AND version LIKE '%$version%' ORDER BY id ASC");
-              $result = mysqli_query($conn,$select);
+function getOrderedScoresByCountryVersion($conn, $country, $version, $order = 'DESC') {
+    // Determine the ordering function based on the desired order
+    $orderFunction = $order === 'ASC' ? 'LEAST' : 'GREATEST';
 
+    $sql = "
+    SELECT series,
+        series_note,
+        $orderFunction(score_chair_1, score_chair_2, score_chair_3, score_chair_4, score_chair_5) AS max_score,
+        CASE
+            WHEN score_chair_1 = $orderFunction(score_chair_1, score_chair_2, score_chair_3, score_chair_4, score_chair_5) THEN chair_1
+            WHEN score_chair_2 = $orderFunction(score_chair_1, score_chair_2, score_chair_3, score_chair_4, score_chair_5) THEN chair_2
+            WHEN score_chair_3 = $orderFunction(score_chair_1, score_chair_2, score_chair_3, score_chair_4, score_chair_5) THEN chair_3
+            WHEN score_chair_4 = $orderFunction(score_chair_1, score_chair_2, score_chair_3, score_chair_4, score_chair_5) THEN chair_4
+            WHEN score_chair_5 = $orderFunction(score_chair_1, score_chair_2, score_chair_3, score_chair_4, score_chair_5) THEN chair_5
+        END AS contestant_name
+    FROM series
+    WHERE country = ? AND version = ?
+    ORDER BY max_score $order
+    LIMIT 10";
 
-              $num_rows = mysqli_num_rows($result);
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $country, $version);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-                      // If results are zero go back to index and die
-                      if(!$num_rows){
+    if ($result->num_rows > 0) {
+        $counter = 1; // Initialize counter
+        // Output the top 10 scores, contestant names, and series
+        while($row = $result->fetch_assoc()) {
+            // Check if series_note contains any text
+            $tooltip = !empty($row['series_note']) ?
+                '<div class="tooltip-container">
+                    <i class="fa fa-umbrella"></i>
+                    <div class="tooltip-text">' . htmlspecialchars($row['series_note'], ENT_QUOTES, 'UTF-8') . '</div>
+                </div>' : '';
+            echo $counter . ". " . $row['contestant_name'] . " - " . $row['max_score'] . " - Series: " . $row['series'] . " " . $tooltip . "<br>";
+            $counter++; // Increment counter
+        }
+    } else {
+        echo "0 results";
+    }
 
-                        echo "<p style='text-align:center;margin-top:10px;font-weight: bold;font-size:16px;background-color: silver;'>Nothing Found</p>";
-                        echo "<p style='text-align:center;'><img src='joe-horses-and-darkness.png' width=96% alt='Nothing found. Image of Joe Wilkerson. Text Horses and Darkness.'></p>";
-                        die;
-                      }
+    $stmt->close();
+}
 
-                      // If results are one or more display with table
-                      else
-                      {
-
-                        echo $headline;
-                                                echo "</td>";
-                        echo "</tr>";
-                        echo "</thead>";
-                        echo "<tbody>";
-
-
-                              while($row = mysqli_fetch_assoc($result))
-
-                                {
-
-                                //$id = $row['id'];
-                                $country = $row['country'];
-                                //$taskmaster = $row['taskmaster'];
-                                //$assistant = $row['assistant'];
-                                $series = $row['series'];
-                                $airdate_range = $row['airdate_range'];
-
-                                $chair_1 = $row['chair_1'];
-                                $chair_2 = $row['chair_2'];
-                                $chair_3 = $row['chair_3'];
-                                $chair_4 = $row['chair_4'];
-                                $chair_5 = $row['chair_5'];
-
-                                $score_chair_1 = $row['score_chair_1']+0;
-                                $score_chair_2 = $row['score_chair_2']+0;
-                                $score_chair_3 = $row['score_chair_3']+0;
-                                $score_chair_4 = $row['score_chair_4']+0;
-                                $score_chair_5 = $row['score_chair_5']+0;
-
-                                $champion = $row['champion'];
-
-                                $version = $row['version'];
-
-                                $series_note = $row['series_note'];
+// Example usage
+//getOrderedScoresByCountryVersion($conn, 'UK', 'Regular Series', 'DESC'); // Greatest scores
+//getOrderedScoresByCountryVersion($conn, 'AU', 'Regular Series', 'ASC');  // Lowest scores
 
 
-                                echo "<tr>";
-
-// link to series lookup
-
-//echo "<td><center><p style='font-size:24px'><a href='series.php?series=$series&country=$country'>$country<br />Series $series</a></p>
-//<p style='font-size:12px'>$airdate_range</p></center></td>";
-
-
-
-echo "
-<td class='d-flex justify-content-center align-items-center'>
-  <div class='text-center'>
-    <p style='font-size:24px'>
-      <a href='series.php?series=$series&country=$country'>$country<br />Series $series</a>
-    </p>
-    <p style='font-size:12px'>$airdate_range</p>
-  </div>
-</td>";
-
-
-
-
-$champ1 = "style='background: blue'";
-$champ2 = "style='background: blue'";
-$champ3 = "style='background: blue'";
-$champ4 = "style='background: blue'";
-$champ5 = "style='background: blue'";
-
-
-if ($chair_1 == $champion)
-{$champ1 = "style='background: gold'";}
-else
-{$champ1 = "style='background: white'";}
-
-if ($chair_2 == $champion)
-{$champ2 = "style='background: gold'";}
-else
-{$champ2 = "style='background: white'";}
-
-if ($chair_3 == $champion)
-{$champ3 = "style='background: gold'";}
-else
-{$champ3 = "style='background: white'";}
-
-if ($chair_4 == $champion)
-{$champ4 = "style='background: gold'";}
-else
-{$champ4 = "style='background: white'";}
-
-if ($chair_5 == $champion)
-{$champ5 = "style='background: gold'";}
-else
-{$champ5 = "style='background: white'";}
-
-
-                                echo "<td style='width=50%'>";
-                                echo "<p $champ1>" . $chair_1 . " [" . $score_chair_1 . "]</p>";
-                                echo "<p $champ2>" . $chair_2 . " [" . $score_chair_2 . "]</p>";
-                                echo "<p $champ3>" . $chair_3 . " [" . $score_chair_3 . "]</p>";
-                                echo "<p $champ4>" . $chair_4 . " [" . $score_chair_4 . "]</p>";
-                                echo "<p $champ5>" . $chair_5 . " [" . $score_chair_5 . "]</p>";
-                                echo "<p style='text-align:center;margin-top:8px;font-size:12px;'>" . $series_note . "</p>";
-                                echo "</td>";
-                                echo "</tr>";
-
-
-                                }
-
-                        }
-echo "</tbody>";
-echo "</table>";
-echo "</div>"; // end table-responsive
-mysqli_close($conn);
 ?>
+
+
+
+
+
+<!-- MY NEW -->
+<div class="table-responsive mt-3">
+  <table id="series-table" class="table table-bordered border-dark">
+
+
+
+<!-- TOP SCORES - REGULAR SERIES -->
+    <thead>
+      <tr>
+        <td class="col text-center mt-1 mb-1 bg-warning bg-gradient">
+            Top 10 Highest Score UK
+        </td>
+        <td class="col text-center mt-1 mb-1 bg-warning bg-gradient">
+            Top 10 Highest Score AU
+        </td>
+        <td class="col text-center mt-1 mb-1 bg-warning bg-gradient">
+            Top 10 Highest Score NZ
+        </td>
+      </tr>
+    </thead>
+<tbody>
+
+  <tr>
+    <td class="col ps-5 mt-1 mb-1 bg-light bg-gradient">
+      <?php getOrderedScoresByCountryVersion($conn, 'UK', 'Regular Series', 'DESC'); // Greatest scores ?>
+    </td>
+    <td class="col ps-5 mt-1 mb-1 bg-light bg-gradient">
+      <?php getOrderedScoresByCountryVersion($conn, 'AU', 'Regular Series', 'DESC'); // Greatest scores ?>
+    </td>
+    <td class="col ps-5 mt-1 mb-1 bg-light bg-gradient">
+      <?php getOrderedScoresByCountryVersion($conn, 'NZ', 'Regular Series', 'DESC'); // Greatest scores ?>
+    </td>
+  </tr>
+
+
+  <!-- LOWEST SCORES - REGULAR SERIES -->
+      <thead>
+        <tr>
+          <td class="col text-center mt-1 mb-1 bg-warning bg-gradient">
+              Top 10 Lowest Score UK
+          </td>
+          <td class="col text-center mt-1 mb-1 bg-warning bg-gradient">
+              Top 10 Lowest Score AU
+          </td>
+          <td class="col text-center mt-1 mb-1 bg-warning bg-gradient">
+              Top 10 Lowest Score NZ
+          </td>
+        </tr>
+      </thead>
+  <tbody>
+
+    <tr>
+      <td class="col ps-5 mt-1 mb-1 bg-light bg-gradient">
+        <?php getOrderedScoresByCountryVersion($conn, 'UK', 'Regular Series', 'ASC'); // Greatest scores ?>
+      </td>
+      <td class="col ps-5 mt-1 mb-1 bg-light bg-gradient">
+        <?php getOrderedScoresByCountryVersion($conn, 'AU', 'Regular Series', 'ASC'); // Greatest scores ?>
+      </td>
+      <td class="col ps-5 mt-1 mb-1 bg-light bg-gradient">
+        <?php getOrderedScoresByCountryVersion($conn, 'NZ', 'Regular Series', 'ASC'); // Greatest scores ?>
+      </td>
+    </tr>
+
+
+
+
+
+
+
+
+    <!-- TOP SCORES - Champion of Champions & New Years Treat -->
+        <thead>
+          <tr>
+            <td class="col text-center mt-1 mb-1 bg-warning bg-gradient">
+                Top Scores UK Champion of Champions
+            </td>
+            <td class="col text-center mt-1 mb-1 bg-warning bg-gradient">
+                Top Scores UK New Years Treat
+            </td>
+            <td class="col text-center mt-1 mb-1 bg-warning bg-gradient">
+
+            </td>
+          </tr>
+        </thead>
+    <tbody>
+
+      <tr>
+        <td class="col ps-5 mt-1 mb-1 bg-light bg-gradient">
+          <?php getOrderedScoresByCountryVersion($conn, 'UK', 'Champion of Champions', 'DESC'); // Greatest scores ?>
+        </td>
+        <td class="col ps-5 mt-1 mb-1 bg-light bg-gradient">
+          <?php getOrderedScoresByCountryVersion($conn, 'UK', 'New Years Treat', 'DESC'); // Greatest scores ?>
+        </td>
+        <td class="col ps-5 mt-1 mb-1 bg-light bg-gradient">
+
+        </td>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tbody>
+</table>
+</div>
+<!-- MY NEW -->
+
+
+
+
+
+
+
+
+
+
+
+<?php mysqli_close($conn); ?>
 
 
 <!-- end container -->
 </div>
+
+
+
+
+
+
 
 </body>
 </html>

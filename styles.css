@@ -1,3 +1,60 @@
+/* Custom tooltip styles */
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tooltip-container .tooltip-text {
+    visibility: hidden;
+    width: 400px; /* Fixed width */
+    min-height: 100px; /* Fixed height */
+    background-color: #333;
+    color: #fff;
+    text-align: left; /* Left-align text for readability */
+    border-radius: 5px;
+    padding: 10px;
+    position: fixed; /* Position fixed to center it on the page */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 16px; /* Increase font size for readability */
+    overflow: auto; /* Show scrollbar if needed */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for better visibility */
+    word-break: break-word; /* Prevent long words from breaking out */
+    line-height: 1.5; /* Improve readability */
+}
+
+.tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Optional: Adjust tooltip position if needed */
+.tooltip-container .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* Position arrow at the bottom */
+    left: 50%;
+    margin-left: -5px; /* Center the arrow */
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent; /* Arrow color */
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -52,7 +109,7 @@
 
 
 
-
+/*
          .dropdown-submenu {
            position: relative;
          }
@@ -61,4 +118,4 @@
            top: 0;
            left: 100%;
            margin-top: -1px;
-         }
+         } */

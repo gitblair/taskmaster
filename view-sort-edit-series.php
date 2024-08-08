@@ -47,130 +47,129 @@
 
 
 <hr />
-    <div class="col-12 text-center mb-3">
-      <button id="add-row-btn" class="btn btn-success">Add New Row</button>
-    </div>
 
 
 
-        <!--
-
-DO NOT DELETE BELOW - WORKING ON CUSTOMIZE COLUMNS
-DO NOT DELETE BELOW - WORKING ON CUSTOMIZE COLUMNS
-DO NOT DELETE BELOW - WORKING ON CUSTOMIZE COLUMNS
-DO NOT DELETE BELOW - WORKING ON CUSTOMIZE COLUMNS
-DO NOT DELETE BELOW - WORKING ON CUSTOMIZE COLUMNS
-DO NOT DELETE BELOW - WORKING ON CUSTOMIZE COLUMNS
-
+        <button id="add-row-btn" class="btn btn-success ms-5 mt-3 mb-4">Add New Row</button>
 
 <hr />
-        <form id="customize-view-form" class="ms-5 mt-3 mb-4">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-id" value="id" checked>
-                <label class="form-check-label" for="column-id">ID</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-featured" value="featured" checked>
-                <label class="form-check-label" for="column-featured">Featured</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-country" value="country" checked>
-                <label class="form-check-label" for="column-country">Country</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-taskmaster" value="taskmaster" checked>
-                <label class="form-check-label" for="column-taskmaster">Taskmaster</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-assistant" value="assistant" checked>
-                <label class="form-check-label" for="column-assistant">Assistant</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-series" value="series" checked>
-                <label class="form-check-label" for="column-series">Series</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-airdate-range" value="airdate-range" checked>
-                <label class="form-check-label" for="column-airdate-range">Airdate Range</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-version" value="version" checked>
-                <label class="form-check-label" for="column-version">Version</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-num" value="num" checked>
-                <label class="form-check-label" for="column-num">Num</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-chair-1" value="chair-1" checked>
-                <label class="form-check-label" for="column-chair-1">Chair 1</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-chair-2" value="chair-2" checked>
-                <label class="form-check-label" for="column-chair-2">Chair 2</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-chair-3" value="chair-3" checked>
-                <label class="form-check-label" for="column-chair-3">Chair 3</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-chair-4" value="chair-4" checked>
-                <label class="form-check-label" for="column-chair-4">Chair 4</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-chair-5" value="chair-5" checked>
-                <label class="form-check-label" for="column-chair-5">Chair 5</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-score-chair-1" value="score-chair-1" checked>
-                <label class="form-check-label" for="column-score-chair-1">Score Chair 1</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-score-chair-2" value="score-chair-2" checked>
-                <label class="form-check-label" for="column-score-chair-2">Score Chair 2</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-score-chair-3" value="score-chair-3" checked>
-                <label class="form-check-label" for="column-score-chair-3">Score Chair 3</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-score-chair-4" value="score-chair-4" checked>
-                <label class="form-check-label" for="column-score-chair-4">Score Chair 4</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-score-chair-5" value="score-chair-5" checked>
-                <label class="form-check-label" for="column-score-chair-5">Score Chair 5</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-champion" value="champion" checked>
-                <label class="form-check-label" for="column-champion">Champion</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-series-note" value="series-note" checked>
-                <label class="form-check-label" for="column-series-note">Series Note</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-champ-score" value="champ-score" checked>
-                <label class="form-check-label" for="column-champ-score">Champ Score</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="column-actions" value="actions" checked>
-                <label class="form-check-label" for="column-actions">Actions</label>
-            </div>
-            <button type="button" id="customize-view-btn" class="btn btn-primary">Customize View</button>
-        </form>
 
-DO NOT DELETE ABOVE - WORKING ON CUSTOMIZE COLUMNS
-DO NOT DELETE ABOVE - WORKING ON CUSTOMIZE COLUMNS
-DO NOT DELETE ABOVE - WORKING ON CUSTOMIZE COLUMNS
-DO NOT DELETE ABOVE - WORKING ON CUSTOMIZE COLUMNS
-DO NOT DELETE ABOVE - WORKING ON CUSTOMIZE COLUMNS
-DO NOT DELETE ABOVE - WORKING ON CUSTOMIZE COLUMNS
-DO NOT DELETE ABOVE - WORKING ON CUSTOMIZE COLUMNS
+<form id="customize-view-form" class="ms-5 mt-3 mb-4">
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-id" value="id" checked>
+        <label class="form-check-label" for="column-id">ID</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-country" value="country" checked>
+        <label class="form-check-label" for="column-country">Country</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-taskmaster" value="taskmaster" checked>
+        <label class="form-check-label" for="column-taskmaster">Taskmaster</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-assistant" value="assistant" checked>
+        <label class="form-check-label" for="column-assistant">Assistant</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-series" value="series" checked>
+        <label class="form-check-label" for="column-series">Series</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-airdate-range" value="airdate-range" checked>
+        <label class="form-check-label" for="column-airdate-range">Airdate Range</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-version" value="version" checked>
+        <label class="form-check-label" for="column-version">Version</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-num" value="num" checked>
+        <label class="form-check-label" for="column-num">Num</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-chair-1" value="chair-1" checked>
+        <label class="form-check-label" for="column-chair-1">Chair 1</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-chair-2" value="chair-2" checked>
+        <label class="form-check-label" for="column-chair-2">Chair 2</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-chair-3" value="chair-3" checked>
+        <label class="form-check-label" for="column-chair-3">Chair 3</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-chair-4" value="chair-4" checked>
+        <label class="form-check-label" for="column-chair-4">Chair 4</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-chair-5" value="chair-5" checked>
+        <label class="form-check-label" for="column-chair-5">Chair 5</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-score-chair-1" value="score-chair-1" checked>
+        <label class="form-check-label" for="column-score-chair-1">Score Chair 1</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-score-chair-2" value="score-chair-2" checked>
+        <label class="form-check-label" for="column-score-chair-2">Score Chair 2</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-score-chair-3" value="score-chair-3" checked>
+        <label class="form-check-label" for="column-score-chair-3">Score Chair 3</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-score-chair-4" value="score-chair-4" checked>
+        <label class="form-check-label" for="column-score-chair-4">Score Chair 4</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-score-chair-5" value="score-chair-5" checked>
+        <label class="form-check-label" for="column-score-chair-5">Score Chair 5</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-champion" value="champion" checked>
+        <label class="form-check-label" for="column-champion">Champion</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-series-note" value="series-note" checked>
+        <label class="form-check-label" for="column-series-note">Series Note</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-champ-score" value="champ-score" checked>
+        <label class="form-check-label" for="column-champ-score">Champ Score</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="column-actions" value="actions" checked>
+        <label class="form-check-label" for="column-actions">Actions</label>
+    </div>
+    <button type="button" id="customize-view-btn" class="btn btn-primary">Customize View</button>
+</form>
 
 
+        <script>
 
-      -->
+        $(document).ready(function() {
+            $('#customize-view-btn').on('click', function() {
+                // Iterate through each checkbox
+                $('#customize-view-form .form-check-input').each(function() {
+                    var columnClass = $(this).val();
+                    if ($(this).is(':checked')) {
+                        $('.' + columnClass).show();  // Show the column
+                    } else {
+                        $('.' + columnClass).hide();  // Hide the column
+                    }
+                });
+            });
+        });
+
+
+
+
+
+        </script>
+
+
 
 
 
@@ -180,29 +179,27 @@ DO NOT DELETE ABOVE - WORKING ON CUSTOMIZE COLUMNS
                   <thead>
                       <tr>
                         <th class="column-id">ID</th>
-                          <th class="column-featured">Featured</th>
-                          <th class="column-country">Country</th>
-                          <th class="column-taskmaster">Taskmaster</th>
-                          <th class="column-assistant">Assistant</th>
-                          <th class="column-series">Series</th>
-                          <th class="column-airdate-range">Airdate Range</th>
-                          <th class="column-version">Version</th>
-                          <th class="column-num">Num</th>
-                          <th class="column-chair-1">Chair 1</th>
-                          <th class="column-chair-2">Chair 2</th>
-                          <th class="column-chair-3">Chair 3</th>
-                          <th class="column-chair-4">Chair 4</th>
-                          <th class="column-chair-5">Chair 5</th>
-                          <th class="column-score-chair-1">Score Chair 1</th>
-                          <th class="column-score-chair-2">Score Chair 2</th>
-                          <th class="column-score-chair-3">Score Chair 3</th>
-                          <th class="column-score-chair-4">Score Chair 4</th>
-                          <th class="column-score-chair-5">Score Chair 5</th>
-                          <th class="column-champion">Champion</th>
-                          <th class="column-series-note">Series Note</th>
-                          <th class="column-champ-score">Champ Score</th>
-                          <th>Action</th>
-
+                        <th class="column-country">Country</th>
+                        <th class="column-taskmaster">Taskmaster</th>
+                        <th class="column-assistant">Assistant</th>
+                        <th class="column-series">Series</th>
+                        <th class="column-airdate-range">Airdate Range</th>
+                        <th class="column-version">Version</th>
+                        <th class="column-num">Num</th>
+                        <th class="column-chair-1">Chair 1</th>
+                        <th class="column-chair-2">Chair 2</th>
+                        <th class="column-chair-3">Chair 3</th>
+                        <th class="column-chair-4">Chair 4</th>
+                        <th class="column-chair-5">Chair 5</th>
+                        <th class="column-score-chair-1">Score Chair 1</th>
+                        <th class="column-score-chair-2">Score Chair 2</th>
+                        <th class="column-score-chair-3">Score Chair 3</th>
+                        <th class="column-score-chair-4">Score Chair 4</th>
+                        <th class="column-score-chair-5">Score Chair 5</th>
+                        <th class="column-champion">Champion</th>
+                        <th class="column-series-note">Series Note</th>
+                        <th class="column-champ-score">Champ Score</th>
+                        <th>Action</th>
                       </tr>
                   </thead>
 
@@ -229,32 +226,31 @@ DO NOT DELETE ABOVE - WORKING ON CUSTOMIZE COLUMNS
 
                     echo "<tr data-id='{$row['id']}'>";
                     echo "<td class='column-id' contenteditable='false' data-field='id'>{$row['id']}</td>";
-                    echo "<td class='column-featured' contenteditable='true' data-field='featured'>{$row['featured']}</td>";
                     echo "<td class='column-country' contenteditable='true' data-field='country'>{$row['country']}</td>";
                     echo "<td class='column-taskmaster' contenteditable='true' data-field='taskmaster'>{$row['taskmaster']}</td>";
                     echo "<td class='column-assistant' contenteditable='true' data-field='assistant'>{$row['assistant']}</td>";
                     echo "<td class='column-series' contenteditable='true' data-field='series'>{$row['series']}</td>";
-                    echo "<td class='column-airdate_range' contenteditable='true' data-field='airdate_range'>{$row['airdate_range']}</td>";
+                    echo "<td class='column-airdate-range' contenteditable='true' data-field='airdate_range'>{$row['airdate_range']}</td>";
                     echo "<td class='column-version' contenteditable='true' data-field='version'>{$row['version']}</td>";
                     echo "<td class='column-num' contenteditable='true' data-field='num'>{$row['num']}</td>";
-                    echo "<td class='column-chair_1' contenteditable='true' data-field='chair_1'>{$row['chair_1']}</td>";
-                    echo "<td class='column-chair_2' contenteditable='true' data-field='chair_2'>{$row['chair_2']}</td>";
-                    echo "<td class='column-chair_3' contenteditable='true' data-field='chair_3'>{$row['chair_3']}</td>";
-                    echo "<td class='column-chair_4' contenteditable='true' data-field='chair_4'>{$row['chair_4']}</td>";
-                    echo "<td class='column-chair_5' contenteditable='true' data-field='chair_5'>{$row['chair_5']}</td>";
-                    echo "<td class='column-score_chair_1' contenteditable='true' data-field='score_chair_1'>{$row['score_chair_1']}</td>";
-                    echo "<td class='column-score_chair_2' contenteditable='true' data-field='score_chair_2'>{$row['score_chair_2']}</td>";
-                    echo "<td class='column-score_chair_3' contenteditable='true' data-field='score_chair_3'>{$row['score_chair_3']}</td>";
-                    echo "<td class='column-score_chair_4' contenteditable='true' data-field='score_chair_4'>{$row['score_chair_4']}</td>";
-                    echo "<td class='column-score_chair_5' contenteditable='true' data-field='score_chair_5'>{$row['score_chair_5']}</td>";
+                    echo "<td class='column-chair-1' contenteditable='true' data-field='chair_1'>{$row['chair_1']}</td>";
+                    echo "<td class='column-chair-2' contenteditable='true' data-field='chair_2'>{$row['chair_2']}</td>";
+                    echo "<td class='column-chair-3' contenteditable='true' data-field='chair_3'>{$row['chair_3']}</td>";
+                    echo "<td class='column-chair-4' contenteditable='true' data-field='chair_4'>{$row['chair_4']}</td>";
+                    echo "<td class='column-chair-5' contenteditable='true' data-field='chair_5'>{$row['chair_5']}</td>";
+                    echo "<td class='column-score-chair-1' contenteditable='true' data-field='score_chair_1'>{$row['score_chair_1']}</td>";
+                    echo "<td class='column-score-chair-2' contenteditable='true' data-field='score_chair_2'>{$row['score_chair_2']}</td>";
+                    echo "<td class='column-score-chair-3' contenteditable='true' data-field='score_chair_3'>{$row['score_chair_3']}</td>";
+                    echo "<td class='column-score-chair-4' contenteditable='true' data-field='score_chair_4'>{$row['score_chair_4']}</td>";
+                    echo "<td class='column-score-chair-5' contenteditable='true' data-field='score_chair_5'>{$row['score_chair_5']}</td>";
                     echo "<td class='column-champion' contenteditable='true' data-field='champion'>{$row['champion']}</td>";
-                    echo "<td class='column-series_note' contenteditable='true' data-field='series_note'>{$row['series_note']}</td>";
-                    echo "<td class='column-champ_score'>{$maxScore}</td>";
+                    echo "<td class='column-series-note' contenteditable='true' data-field='series_note'><div class='overflow-auto bg-light' style='max-height: 50px;width: 250px;'>{$row['series_note']}</div></td>";
+                    echo "<td class='column-champ-score'>{$maxScore}</td>";
                     echo "<td><button class='btn btn-primary save-row-btn'>Save</button></td>";
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='23'>No records found</td></tr>";
+                echo "<tr><td colspan='22'>No records found</td></tr>";
             }
             ?>
         </tbody>
@@ -262,30 +258,11 @@ DO NOT DELETE ABOVE - WORKING ON CUSTOMIZE COLUMNS
 
 </div>
 
-<!-- Bootstrap Modal for confirming the addition of a new row -->
-<div class="modal fade" id="addRowModal" tabindex="-1" aria-labelledby="addRowModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="addRowModalLabel">Confirm Add New Row</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to add this new row?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" id="confirm-add-row" class="btn btn-primary">Confirm</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 
 
-
-</div>
+</div> <!-- final div -->
 
 
 <script>
@@ -314,21 +291,20 @@ $(document).ready(function() {
             4: { sorter: 'text' },
             5: { sorter: 'text' },
             6: { sorter: 'text' },
-            7: { sorter: 'text' },
-            8: { sorter: 'digit' },
+            7: { sorter: 'digit' },
+            8: { sorter: 'text' },
             9: { sorter: 'text' },
             10: { sorter: 'text' },
             11: { sorter: 'text' },
             12: { sorter: 'text' },
-            13: { sorter: 'text' },
+            13: { sorter: 'digit' },
             14: { sorter: 'digit' },
             15: { sorter: 'digit' },
             16: { sorter: 'digit' },
             17: { sorter: 'digit' },
-            18: { sorter: 'digit' },
+            18: { sorter: false },
             19: { sorter: false },
-            20: { sorter: false },
-            21: { sorter: 'digit' }
+            20: { sorter: 'digit' }
         },
         sortList: [[0, 1]]
     });
@@ -337,7 +313,6 @@ $(document).ready(function() {
     var newRowTemplate = `
         <tr>
             <td contenteditable="false" data-field="id"></td>
-            <td contenteditable="true" data-field="featured">0</td>
             <td contenteditable="true" data-field="country"></td>
             <td contenteditable="true" data-field="taskmaster"></td>
             <td contenteditable="true" data-field="assistant"></td>
@@ -362,70 +337,48 @@ $(document).ready(function() {
         </tr>
     `;
 
-    $('#add-row-btn').on('click', function() {
-        $('#addRowModal').modal('show');
+
+
+  // Handle data submission for new row
+$('#add-row-btn').on('click', function() {
+    var row = $(newRowTemplate); // Ensure newRowTemplate is defined
+    var data = {};
+
+    row.find('td[data-field]').each(function() {
+        var field = $(this).data('field');
+        var value = $(this).text();
+        data[field] = value;
     });
 
-    $('#confirm-add-row').on('click', function() {
-        $('table tbody').prepend(newRowTemplate);
-        $('#addRowModal').modal('hide');
-
-        // Handle data submission for new row
-        var row = $(newRowTemplate);
-        var data = {};
-
-        row.find('td[data-field]').each(function() {
-            var field = $(this).data('field');
-            var value = $(this).text();
-            data[field] = value;
-        });
-
-        $.ajax({
-            url: 'add_series.php',
-            method: 'POST',
-            data: { data: data },
-            success: function(response) {
-                alert('Row added successfully');
-                location.reload(); // Reload to show the new row with proper ID
-            },
-            error: function() {
-                alert('Error adding row');
-            }
-        });
+    $.ajax({
+        url: 'add_series.php',
+        method: 'POST',
+        data: { data: data },
+        success: function(response) {
+            alert('Row added successfully');
+            location.reload(); // Reload to show the new row with proper ID
+        },
+        error: function() {
+            alert('Error adding row');
+        }
     });
-
-    // Save Button Script
-    // $('#save-btn').on('click', function() {
-    //     var data = [];
-    //     $('#series-table tbody tr').each(function() {
-    //         var row = $(this);
-    //         var rowData = { id: row.data('id') };
-    //
-    //         row.find('[contenteditable=true]').each(function() {
-    //             var field = $(this).data('field');
-    //             var value = $(this).text();
-    //             rowData[field] = value;
-    //         });
-    //
-    //         data.push(rowData);
-    //     });
-    //
-    //     $.ajax({
-    //         url: 'update_series.php', // Ensure this URL is correct
-    //         type: 'POST',
-    //         data: { data: JSON.stringify(data) }, // Stringify the data
-    //         success: function(response) {
-    //             alert('Data saved successfully.');
-    //             location.reload(); // Reload to show the updated changes
-    //         },
-    //         error: function(xhr, status, error) {
-    //             alert('An error occurred while saving data.');
-    //         }
-    //     });
-    // });
+});
 
 
-    // Handle Save Row button click
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Handle Save Update Row button click
     $(document).on('click', '.save-row-btn', function() {
         var row = $(this).closest('tr');
         var rowData = { id: row.data('id') };
